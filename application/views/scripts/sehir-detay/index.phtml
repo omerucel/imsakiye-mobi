@@ -1,0 +1,55 @@
+<?php
+$this->headTitle($this->namaz->getCity()->getName());
+?>
+<div data-role="page">
+    <div data-role="header">
+        <a href="<?php echo $this->baseUrl('/'); ?>" data-icon="home" data-iconpos="notext"></a>
+        <h1 style="white-space:normal"><?php echo $this->namaz->getCity()->getName(); ?></h1>
+        <a href="<?php echo $this->baseUrl('/sehir-listesi'); ?>" data-icon="back" data-iconpos="notext"></a>
+    </div>
+    <div data-role="content" data-theme="e">
+        <p>
+            <?php echo sprintf("Ramazan'ın %s. günü", $this->day); ?>
+        </p>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+            <?php if ($this->showPin): ?>
+                <li data-theme="b">
+                    <a href="<?php echo $this->baseUrl('/sehir-detay?id=' . $this->namaz->getCityId() . '&isaretle=1'); ?>">
+                        <img src="<?php echo $this->baseUrl('/img/pin.png'); ?>" alt="" />
+                        <h3>Şehri İşaretle</h3>
+                        <p style="white-space:normal">Şehri işaretleyerek site anasayfasından kolayca bu şehre ulaşabilirsiniz.</p>
+                    </a>
+                </li>
+            <?php endif; ?>
+            <li>
+                <h3><?php echo $this->namaz->getImsak('%H:%M'); ?></h3>
+                <p>İmsak</p>
+            </li>
+            <li>
+                <h3><?php echo $this->namaz->getGunes('%H:%M'); ?></h3>
+                <p>Güneş</p>
+            </li>
+            <li>
+                <h3><?php echo $this->namaz->getOgle('%H:%M'); ?></h3>
+                <p>Öğle</p>
+            </li>
+            <li>
+                <h3><?php echo $this->namaz->getIkindi('%H:%M'); ?></h3>
+                <p>İkindi</p>
+            </li>
+            <li>
+                <h3><?php echo $this->namaz->getAksam('%H:%M'); ?></h3>
+                <p>Akşam</p>
+            </li>
+            <li>
+                <h3><?php echo $this->namaz->getYatsi('%H:%M'); ?></h3>
+                <p>Yatsı</p>
+            </li>
+        </ul>
+    </div>
+    <div data-role="footer">
+        <p style="text-align: center;"><a href="mailto:omerucel@gmail.com">İletişim</a></p>
+    </div>
+</div>

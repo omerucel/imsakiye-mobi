@@ -1,0 +1,22 @@
+<?php
+$this->headTitle('Şehir Listesi');
+?>
+<div data-role="page" id="sehir-listesi">
+    <div data-role="header" data-position="fixed">
+        <a href="<?php echo $this->baseUrl('/'); ?>" data-icon="home" data-iconpos="notext"></a>
+        <h1 style="white-space:normal">Şehir Listesi</h1>
+    </div>
+    <div data-role="content" data-theme="e">
+        <p>
+            <?php echo sprintf("Ramazan'ın %s. günü", $this->day); ?>
+        </p>
+    </div>
+    <div data-role="content">
+        <p>Lütfen listeden bulunduğunuz şehri seçiniz.</p>
+        <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Şehirler arasında arama yap..">
+            <?php foreach($this->sehirler as $sehir): ?>
+                <li><a href="<?php echo $this->baseUrl('/sehir-detay?id=' . $sehir['Id']); ?>"><?php echo $this->escape($sehir['Name']); ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>

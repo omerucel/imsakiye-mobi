@@ -1,0 +1,51 @@
+<?php $this->headTitle('Hayırlı Ramazanlar'); ?>
+<div data-role="page">
+    <div data-role="header">
+        <h1 style="white-space:normal">Ramazan İmsakiyesi</h1>
+    </div>
+    <div data-role="content" data-theme="e">
+        <p>
+            <?php
+            $date = new DateTime();
+            echo $date->diff(new DateTime('2012-07-19'))->format("Ramazan'ın %a. günü.");
+            ?>
+        </p>
+    </div>
+    <div data-role="content">
+        <?php if (count($this->selectedCities) > 0): ?>
+            <h3>İşaretlediğiniz Şehirler</h3>
+            <ul data-role="listview" data-theme="a" data-inset="true"  data-split-theme="d" data-split-icon="delete">
+                <?php foreach($this->selectedCities as $sehir): ?>
+                    <li>
+                        <a href="<?php echo $this->baseUrl('/sehir-detay?id=' . $sehir['Id']); ?>"><?php echo $this->escape($sehir['Name']); ?></a>
+                        <a href="<?php echo $this->baseUrl('?id=' . $sehir['Id'] . '&isareti_kaldir=1'); ?>"></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+
+        <p>
+            Hem lokasyonunuza göre otomatik olarak hem de şehir seçimi yaparak imsakiyenizin görüntülenmesini sağlayabilirsiniz.
+        </p>
+
+        <ul data-role="listview" data-inset="true">
+            <li>
+                <a href="<?php echo $this->baseUrl('/lokasyon'); ?>" rel="external">
+                    <img src="<?php echo $this->baseUrl('/img/location.png'); ?>" alt="" />
+                    <h3>Lokasyona Göre</h3>
+                    <p style="white-space:normal">Lokasyonunuza göre imsakiyenizi görüntüleyebilirsiniz.</p>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo $this->baseUrl('/sehir-listesi'); ?>">
+                    <img src="<?php echo $this->baseUrl('/img/city.png'); ?>" alt="" />
+                    <h3>Şehir Seç</h3>
+                    <p style="white-space:normal">Şehir seçimi yaparak imsakiyenizi görüntüleyebilirsiniz.</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div data-role="footer">
+        <p style="text-align: center;"><a href="mailto:omerucel@gmail.com">İletişim</a></p>
+    </div>
+</div>

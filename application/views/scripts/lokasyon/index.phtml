@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ramazan İmsakiyesi</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+    <script type="text/javascript">
+        var __appUrl = '<?php echo $this->baseUrl('/'); ?>'.slice(0,-1);
+        function successHandler(location)
+        {
+            $.mobile.showPageLoadingMsg("a", "Lütfen bekleyiniz...", true);
+            $.get(__appUrl + '/check-location?lat=' + location.coords.latitude + '&lng='
+                + location.coords.longitude, function(data){
+                $.mobile.hidePageLoadingMsg();
+                document.location = 'http://' + document.location.host + __appUrl + '/' + data;
+            });
+        }
+
+        function errorHandler(error){}
+
+        $(document).delegate('.ui-page', 'pageinit', function () {
+            navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
+        });
+    </script>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="header">
+            <a href="<?php echo $this->baseUrl('/'); ?>" data-icon="home" data-iconpos="notext"></a>
+            <h1 style="white-space:normal">Bulunduğunuz Şehir</h1>
+        </div>
+        <div data-role="content">
+            <p>Konumunuz belirleniyor...</p>
+        </div>
+    </div>
+</body>
+</html>

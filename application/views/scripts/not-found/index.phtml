@@ -1,0 +1,19 @@
+<div data-role="page" id="ilce-listesi">
+    <div data-role="header">
+        <a href="<?php echo $this->baseUrl('/sehir-listesi'); ?>" data-icon="back" data-iconpos="notext"></a>
+        <h1 style="white-space:normal">Şehir Bulunmadı</h1>
+    </div>
+    <div data-role="content" data-theme="e">
+        <p>
+            <?php echo sprintf("Ramazan'ın %s. günü", $this->day); ?>
+        </p>
+    </div>
+    <div data-role="content">
+        <p>
+            Aradınız şehir sistemde bulunamadı. Lütfen şehir listesi seçim sayfasından şehrinizi seçiniz.
+        </p>
+    </div>
+    <div data-role="footer">
+        <p style="text-align: center;"><a href="mailto:omerucel@gmail.com">İletişim</a></p>
+    </div>
+</div>
